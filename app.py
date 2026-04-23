@@ -1,5 +1,5 @@
 import streamlit as st
-from skills import *, ml_skills
+from skills import *
 import PyPDF2
 
 # -------- Functions --------
