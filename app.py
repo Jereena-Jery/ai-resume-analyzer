@@ -1,7 +1,6 @@
 import streamlit as st
 from skills import *
 import PyPDF2
-
 # -------- Functions --------
 def extract_text(file):
     reader = PyPDF2.PdfReader(file)
