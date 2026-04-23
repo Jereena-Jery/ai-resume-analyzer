@@ -28,30 +28,29 @@ st.title("🤖 AI Resume Analyzer")
 
 st.write("Upload your resume and check how well it matches a job role.")
 
-role = st.selectbox("Select Job Role", ["Data Analyst", "ML Engineer","Data scientist","python developer"])
+role = st.selectbox("Select Job Role", ["Data Analyst", "ML Engineer","Data Scientist","Python Developer"])
 
 uploaded_file = st.file_uploader("Upload Resume (PDF only)", type=["pdf"])
 
 if uploaded_file is not None:
     resume_text = extract_text(uploaded_file)
 
+    # Select skills based on role
     if role == "Data Analyst":
         skills = data_analyst_skills
-    
-elif role == "ML Engineer":
-    skills = ml_skills
 
-elif role == "Data Scientist":
-    from skills import data_scientist_skills
-    skills = data_scientist_skills
+    elif role == "ML Engineer":
+        skills = ml_skills
 
-elif role == "Python Developer":
-    from skills import python_dev_skills
-    skills = python_dev_skills
+    elif role == "Data Scientist":
+        skills = data_scientist_skills
 
+    elif role == "Python Developer":
+        skills = python_dev_skills
+
+    # Now analyze
     found = match_skills(resume_text, skills)
     score = calculate_score(found, skills)
-    st.progress(score / 100)
     missing = list(set(skills) - set(found))
 
     st.success("Resume analyzed successfully!")
